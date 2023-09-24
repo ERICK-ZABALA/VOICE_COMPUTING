@@ -1,4 +1,4 @@
-import ffmmpy
+import ffmpy
 
 def convert_wav(filename):
     #take in an audio file and convert with ffpeg file type
@@ -11,4 +11,4 @@ def convert_wav(filename):
             )
         ff.run()
 
-convert_wav('test.mp3')
+convert_wav('audio/one.mp3')

@@ -145,3 +145,156 @@ async_record('async_record.wav', 10, 16000, 1)
 ```
 # Converting Audio Formats
 
++ Install ffmpeg in Windows Variable Path before
+
+```pytthon
+import ffmpy
+
+def convert_wav(filename):
+    #take in an audio file and convert with ffpeg file type
+    #types of input files: .mp3
+    #output file type: .wav
+    if filename[-4:] in ['.mp3','.m4a','.ogg']:
+        ff = ffmpy.FFmpeg(
+            inputs={filename:None},
+            outputs={filename[0:-4]+'.wav': None}
+            )
+        ff.run()
+
+convert_wav('audio/one.mp3')
+
+```
+![Alt text](image-2.png)
+
+# Transcript Speech to Text
+
++ Connect to Speech-to-Text API by Google
+
+![Alt text](image-3.png)
+
+![Alt text](image-4.png)
+
+![Alt text](image-5.png)
+
++ Console Google - Project STT Google
+
+![Alt text](image-6.png)
+
+```bash
+$ gcloud auth application-default login
+previous paste code: pass: 4...
+devnet_code@cloudshell:~ (stt-voice-400016)$ cat /tmp/tmp.Gf7JLDNgHI/application_default_credentials.json
+```
+
++ Copy application_default_credentials.json in your local machine.
+
+```bash
+$ export GOOGLE_APPLICATION_CREDENTIALS='/d/DEVOPS/VOICE_COMPUTING/VOICE_COMPUTING/chapter_1/04_transcript_audio/application_default_credentials.json'
+$ echo $GOOGLE_APPLICATION_CREDENTIALS
+```
+
+```python
+
+import speech_recognition as sr_audio
+import sounddevice as sd
+import soundfile as sf
+import os, json, datetime
+
+def transcribe_audio_google(filename):
+    # transcribe the audio (note this is only done if a voice sample)
+    r=sr_audio.Recognizer()
+    with sr_audio.AudioFile(filename) as source:
+        audio = r.record(source)
+    text=r.recognize_google_cloud(audio_data=audio, language="es-BO")
+
+    return text
+
+def sync_record(filename, duration, fs, channels):
+    print('recording')
+    myrecording = sd.rec(int(duration * fs), samplerate=fs, channels=channels)
+    sd.wait()
+    sf.write(filename, myrecording, fs)
+    print('done recording')
+
+def store_transcript(filename, transcript):
+    jsonfilename=filename[0:-4]+'.json'
+    print('saving %s to current directory'%(jsonfilename))
+    data = {
+        'date': str(datetime.datetime.now()),
+        'filename':filename,
+        'transcript':transcript,
+        }
+    print(data)
+    jsonfile=open(jsonfilename,'w')
+    json.dump(data,jsonfile)
+    jsonfile.close()
+
+# record file and print transcript
+filename='google_record.wav'
+sync_record(filename, 10, 16000, 1)
+transcript=transcribe_audio_google(filename)
+# now write the transcript into a .json file
+# e.g. google_record.wav transcript will be stored in google_record.json
+store_transcript(filename, transcript)
+```
+![Alt text](image-7.png)
+
++ https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages
+
+
+# Text to Speech TTS
+
++ Enable in Google Text to Speech
++ Use credentials: GOOGLE_APPLICATION_CREDENTIALS
+
+![Alt text](image-8.png)
+
+```python
+def speak_google(text, filename, model):
+    """Synthesizes speech from the input string of text."""
+    from google.cloud import texttospeech
+
+    client = texttospeech.TextToSpeechClient()
+    synthesis_input = texttospeech.SynthesisInput(text=text)
+
+    voice = texttospeech.VoiceSelectionParams(
+        language_code='en-US',
+        ssml_gender=texttospeech.SsmlVoiceGender.FEMALE,
+        name=model
+    )
+
+    audio_config = texttospeech.AudioConfig(
+        audio_encoding=texttospeech.AudioEncoding.MP3
+    )
+
+    response = client.synthesize_speech(
+        input=synthesis_input,
+        voice=voice,
+        audio_config=audio_config
+    )
+
+    # The response's audio_content is binary.
+    with open(filename, 'wb') as out:
+        out.write(response.audio_content)
+        print('Audio content written to file %s' % (filename))
+
+# Experimenta con varias voces
+base = 'output'
+models = [
+    'en-US-Wavenet-A',
+    'en-US-Wavenet-B',
+    'en-US-Wavenet-C',
+    'en-US-Wavenet-D',
+    'en-US-Wavenet-E',
+    'en-US-Wavenet-F'
+]
+
+text = 'Hey, I am testing out Google TTS'
+
+# Recorre varias voces y genera archivos de audio
+# Todos estos archivos se guardarán en el directorio actual
+for model in models:
+    speak_google(text, f'{base}_{model}.mp3', model)
+
+```
+
