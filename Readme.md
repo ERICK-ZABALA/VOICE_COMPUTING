@@ -41,7 +41,7 @@ data.export("audio/new_one.wav")
 # Manipulating Audio Files
 
 + install sudo apt-get install sox libsox-dev
-+ pip intall pysox
++ pip install sox
 
 ```python
 import os
