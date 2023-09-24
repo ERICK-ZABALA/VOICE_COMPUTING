@@ -147,6 +147,8 @@ async_record('async_record.wav', 10, 16000, 1)
 
 + Install ffmpeg in Windows Variable Path before
 
+![Alt text](image-9.png)
+
 ```pytthon
 import ffmpy
 
@@ -241,6 +243,7 @@ store_transcript(filename, transcript)
 
 + https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages
 
+![Alt text](image-11.png)
 
 # Text to Speech TTS
 
@@ -296,4 +299,4 @@ for model in models:
     speak_google(text, f'{base}_{model}.mp3', model)
 
 ```
-
+![Alt text](image-10.png)
