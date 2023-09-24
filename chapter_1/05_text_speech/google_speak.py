@@ -4,9 +4,9 @@ def speak_google(text, filename, model):
 
     client = texttospeech.TextToSpeechClient()
     synthesis_input = texttospeech.SynthesisInput(text=text)
-
+    # fr-CA-Neural2-A, fr-CA-Neural2-Afr-B, A-Neural2-C fr-CA     
     voice = texttospeech.VoiceSelectionParams(
-        language_code='en-US',
+        language_code='fr-FR',
         ssml_gender=texttospeech.SsmlVoiceGender.FEMALE,
         name=model
     )
@@ -29,15 +29,12 @@ def speak_google(text, filename, model):
 # Experimenta con varias voces
 base = 'output'
 models = [
-    'en-US-Wavenet-A',
-    'en-US-Wavenet-B',
-    'en-US-Wavenet-C',
-    'en-US-Wavenet-D',
-    'en-US-Wavenet-E',
-    'en-US-Wavenet-F'
-]
+    'fr-FR-Neural2-A',
+    'fr-FR-Neural2-E',
+    'fr-FR-Neural2-C',
+    ]
 
-text = 'Hey, I am testing out Google TTS'
+text = 'Bonjour à Montréal - Google TTS'
 
 # Recorre varias voces y genera archivos de audio
 # Todos estos archivos se guardarán en el directorio actual

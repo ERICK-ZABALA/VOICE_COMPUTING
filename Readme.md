@@ -249,6 +249,8 @@ store_transcript(filename, transcript)
 
 ![Alt text](image-8.png)
 
++ https://cloud.google.com/text-to-speech/docs/voices
+
 ```python
 def speak_google(text, filename, model):
     """Synthesizes speech from the input string of text."""
@@ -258,7 +260,7 @@ def speak_google(text, filename, model):
     synthesis_input = texttospeech.SynthesisInput(text=text)
 
     voice = texttospeech.VoiceSelectionParams(
-        language_code='en-US',
+        language_code='fr-CA',
         ssml_gender=texttospeech.SsmlVoiceGender.FEMALE,
         name=model
     )
@@ -281,15 +283,12 @@ def speak_google(text, filename, model):
 # Experimenta con varias voces
 base = 'output'
 models = [
-    'en-US-Wavenet-A',
-    'en-US-Wavenet-B',
-    'en-US-Wavenet-C',
-    'en-US-Wavenet-D',
-    'en-US-Wavenet-E',
-    'en-US-Wavenet-F'
-]
+    'fr-CA-Neural2-A',
+    'fr-CA-Neural2-B',
+    'fr-CA-Neural2-C',
+    ]
 
-text = 'Hey, I am testing out Google TTS'
+text = 'Hola, Montreal Google TTS'
 
 # Recorre varias voces y genera archivos de audio
 # Todos estos archivos se guardarán en el directorio actual
