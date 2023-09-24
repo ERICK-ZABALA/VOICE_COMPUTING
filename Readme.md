@@ -25,7 +25,7 @@ Read and write Audio Files
 
 # Library PyDub
 
-+ Install sudo apt-get install ffmpeg
++ Install: sudo apt-get install ffmpeg
 + pip install pydub
 
 ```python
@@ -98,7 +98,7 @@ https://x410.dev/cookbook/wsl/enabling-sound-in-wsl-ubuntu-let-it-sing/
 
 ![Alt text](image-1.png)
 
-pip install soundevice
+pip install sounddevice
 
 ```python
 import sounddevice as sd
@@ -119,3 +119,29 @@ time.sleep(1)
 sd.stop()
 print('stopped')
 ```
+# Record Async
+
+```python
+import sounddevice as sd
+import soundfile as sf
+import time
+
+def printstuff(number):
+    for i in range(number):
+        print(i)
+
+def async_record(filename, duration, fs, channels):
+    print('recording')
+    myrecording = sd.rec(int(duration * fs), samplerate=fs, channels=channels)
+    print('can to execute this before finishing')
+    printstuff(30)
+
+    sd.wait()
+    sf.write(filename, myrecording, fs)
+    print('done recording')
+
+async_record('async_record.wav', 10, 16000, 1)
+
+```
+# Converting Audio Formats
+
