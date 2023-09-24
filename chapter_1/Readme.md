@@ -94,9 +94,9 @@ then doing his steps in Windows 10:
 
 https://x410.dev/cookbook/wsl/enabling-sound-in-wsl-ubuntu-let-it-sing/
 
-![Alt text](images\image.png)
+![Alt text](images/image.png)
 
-![Alt text](images\image-1.png)
+![Alt text](images/image-1.png)
 
 pip install sounddevice
 
@@ -147,7 +147,7 @@ async_record('async_record.wav', 10, 16000, 1)
 
 + Install ffmpeg in Windows Variable Path before
 
-![Alt text](images\image-9.png)
+![Alt text](images/image-9.png)
 
 ```pytthon
 import ffmpy
@@ -166,21 +166,21 @@ def convert_wav(filename):
 convert_wav('audio/one.mp3')
 
 ```
-![Alt text](images\image-2.png)
+![Alt text](images/image-2.png)
 
 # Transcript Speech to Text
 
 + Connect to Speech-to-Text API by Google
 
-![Alt text](images\image-3.png)
+![Alt text](images/image-3.png)
 
-![Alt text](images\image-4.png)
+![Alt text](images/image-4.png)
 
-![Alt text](images\image-5.png)
+![Alt text](images/image-5.png)
 
 + Console Google - Project STT Google
 
-![Alt text](images\image-6.png)
+![Alt text](images/image-6.png)
 
 ```bash
 $ gcloud auth application-default login
@@ -239,18 +239,18 @@ transcript=transcribe_audio_google(filename)
 # e.g. google_record.wav transcript will be stored in google_record.json
 store_transcript(filename, transcript)
 ```
-![Alt text](images\image-7.png)
+![Alt text](images/image-7.png)
 
 + https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages
 
-![Alt text](images\image-11.png)
+![Alt text](images/image-11.png)
 
 # Text to Speech TTS
 
 + Enable in Google Text to Speech
 + Use credentials: GOOGLE_APPLICATION_CREDENTIALS
 
-![Alt text](images\image-8.png)
+![Alt text](images/image-8.png)
 
 + https://cloud.google.com/text-to-speech/docs/voices
 
@@ -299,21 +299,21 @@ for model in models:
     speak_google(text, f'{base}_{model}.mp3', model)
 
 ```
-![Alt text](images\image-10.png)
+![Alt text](images/image-10.png)
 
 # Upload File OneDrive
 
 + Active Google Drive API
 
-![Alt text](images\image-13.png)
+![Alt text](images/image-13.png)
 
-![Alt text](images\image-14.png)
+![Alt text](images/image-14.png)
 
 + Create an Account for your Application
 
-![Alt text](images\image-12.png)
+![Alt text](images/image-12.png)
 
-![Alt text](images\image-15.png)
+![Alt text](images/image-15.png)
 
 + Store file as client_secrets.json
 ```python
@@ -348,4 +348,4 @@ except Exception as e:
     print('Se produjo un error en: ', e)
 
 ```
-![Alt text](images\image-16.png)
+![Alt text](images/image-16.png)
