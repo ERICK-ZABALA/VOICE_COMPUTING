@@ -1,0 +1,15 @@
+Samples read:            882000
+Length (seconds):     10.000000
+Scaled by:         2147483647.0
+Maximum amplitude:     0.999969
+Minimum amplitude:    -0.650269
+Midline amplitude:     0.174850
+Mean    norm:          0.022227
+Mean    amplitude:    -0.000030
+RMS     amplitude:     0.043537
+Maximum delta:         1.377045
+Minimum delta:         0.000000
+Mean    delta:         0.001757
+RMS     delta:         0.005388
+Rough   frequency:          868
+Volume adjustment:        1.000
