@@ -3,11 +3,9 @@
 # YOU TUBE SCRAPE
 
 ```bash
-sudo pip3 install youtube-dl
-```
+sudo pip install youtube-dl
 
-```bash
-sudo pip3 install youtube-dl --upgrade
+sudo pip install youtube-dl --upgrade
 ```
 
 + Download https://github.com/ytdl-org/ytdl-nightly/releases
@@ -29,6 +27,8 @@ cd ~
 cd youtube_scrape 
 
 ```
+
++ Running:
 
 ```bash
 $ python make_playlist.py
