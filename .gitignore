@@ -1,11 +1,11 @@
 
 voicebook/
 venv/
-chapter_3/audioset/*
+chapter_3/audioset/
 chapter_3/models/
 chapter_3/__pycache__/
-chapter_3/audioset/vggish/processdir/*
-
+chapter_3/audioset/vggish/processdir/
+chapter_4/youtube_dl/
 # Permitir específicamente el archivo "archivo_permitido.txt" dentro de "mi_carpeta"
 !chapter_3/audioset/vggish/processdir/test3.json
 !chapter_3/audioset/vggish/processdir/test3.wav
