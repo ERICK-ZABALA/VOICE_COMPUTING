@@ -10,11 +10,7 @@ sudo pip install youtube-dl
 sudo pip install youtube-dl --upgrade
 ```
 
-+ Download https://github.com/ytdl-org/ytdl-nightly/releases
-
-```bash
-$ python -m pip install --force-reinstall youtube-dl-2023.09.25.tar.gz
-```
++ Download https://github.com/ytdl-org/ytdl-nightly/releases$ python -m pip install --force-reinstall youtube-dl-2023.09.25.tar.gz
 
 ```bash
 git clone https://github.com/jim-schwoebel/youtube_scrape.git

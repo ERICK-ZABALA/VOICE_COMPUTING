@@ -1,4 +1,3 @@
-
 # Textgenrnn
 
 + Install Generative Text
@@ -9,12 +8,15 @@
  $ pip install --upgrade pip
  $ python setup.py install
 ```
-+ Load Messages in folder data: textmessages.txt
 
-+ Testting 
++ Load Messages in folder data: textmessages.txt
++ Testting
+
 ```bash
 (venv) @ERICK-ZABALA ➜ /workspaces/VOICE_COMPUTING/chapter_5/textgenrnn (master) $ python generate_text.py 
 ```
+
+
 ```python
 from textgenrnn import textgenrnn
 
@@ -34,6 +36,7 @@ for i in range(10):
         print(f"Error during text generation: {e}")
 
 ```
+
 ![Alt text](image.png)
 
 # Generative Poem
@@ -57,11 +60,13 @@ True
 >>> exit()
 
 ```
+
 + Running:
 
 ```bash
 $ python generate_poem.py
 ```
+
 
 ```python
 (venv) @ERICK-ZABALA ➜ /workspaces/VOICE_COMPUTING/chapter_5/textgenrnn (master) $ python generate_poem.py
@@ -92,11 +97,13 @@ True
 >>> exit()
 
 ```
+
 Running Code:
 
 ```bash
 $ python generate_summary.py
 ```
+
 
 ```bash
 (venv) @ERICK-ZABALA ➜ /workspaces/VOICE_COMPUTING/chapter_5/textgenrnn (master) $ python generate_summary.py 
@@ -109,8 +116,55 @@ https://en.wikipedia.org/wiki/Information_technology
 Based on the storage and processing technologies employed, it is possible to distinguish four distinct phas ...
 ```
 
-# Make Chaterbot
+# Make ChatterBot
 
-+ pip install chatterbot
+Process to install ChatterBot:
 
-+ git clone https://github.com/gunthercox/ChatterBot.git
++ Download: https://github.com/gunthercox/ChatterBot/releases
+
+  Version: 1.0.8 - ChatterBot-1.0.8.tar.gz
+
++ python -m pip install --force-reinstall ChatterBot-1.0.8.tar.gz
++ python -m pip install --upgrade pip
++ python -m spacy download en_core_web_sm
++ pip install -U spacy
++ pip install bs4
++ pip install lxml
+
++ Modify:
+
+  ![1696231467436](image/Readme/1696231467436.png)
+
+```python
+
+#self.nlp = spacy.load(self.language.ISO_639_1.lower())
+
+if self.language.ISO_639_1.lower() =='en':
+    self.nlp = spacy.load('en_core_web_sm')
+else:
+    self.nlp = spacy.load(self.language.ISO_639_1.lower())
+```
+
++ Running:
+
+```python
+from chatterbot import ChatBot
+chatbot = ChatBot("Ron Obvious")
+from chatterbot.trainers import ListTrainer
+
+conversation = [
+    "Hello",
+    "Hi there!",
+    "How are you doing?",
+    "I'm doing great.",
+    "That is good to hear",
+    "Thank you.",
+    "You're welcome."
+]
+
+trainer = ListTrainer(chatbot)
+
+trainer.train(conversation)
+response = chatbot.get_response("Good morning!")
+print(response)
+```
